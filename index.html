@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadon Jones | Software Engineer</title>
+    <style>
+        :root {
+            --bg: #0D0F17;
+            --card: #1A1E2C;
+            --accent: #00FF41; /* Terminal Green */
+            --text: #DCDFEB;
+            --text-dim: #8892B0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Courier New', monospace; 
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Navigation --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px; background: rgba(13, 15, 23, 0.95); z-index: 100; text-align: right; border-bottom: 1px solid #2d3447; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { color: var(--accent); font-weight: bold; padding-left: 20px; }
+        .nav-links { padding-right: 20px; }
+        nav a { color: var(--text); text-decoration: none; margin-left: 20px; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* --- Header --- */
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--accent); margin-bottom: 10px; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin-bottom: 25px; }
+        .social-links a { color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 8px 15px; border-radius: 4px; font-size: 0.8rem; transition: 0.3s; margin: 0 5px; }
+        .social-links a:hover { background: rgba(0, 255, 65, 0.1); }
+
+        /* --- Sections --- */
+        section { max-width: 1100px; margin: 100px auto; padding: 0 40px; }
+        h2 { color: var(--accent); font-size: 1.8rem; margin-bottom: 40px; display: flex; align-items: center; }
+        h2::after { content: ""; flex: 1; height: 1px; background: #2d3447; margin-left: 20px; }
+
+        /* --- Cards & Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background: var(--card); padding: 30px; border-radius: 4px; border: 1px solid #2d3447; transition: 0.3s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card h3 { color: var(--accent); margin-bottom: 10px; }
+        .card .date { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 15px; }
+        .card .link-icon { color: var(--accent); text-decoration: none; font-size: 0.8rem; display: inline-block; margin-top: 15px; }
+        
+        /* --- Tags --- */
+        .tag { display: inline-block; font-size: 0.75rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px; border-radius: 3px; margin: 5px 5px 0 0; }
+
+        /* --- Lists & Skills --- */
+        ul { margin: 15px 0 0 20px; font-size: 0.9rem; }
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .skill-group h4 { color: var(--text); margin-bottom: 10px; font-size: 1rem; text-decoration: underline; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-item { background: #232936; padding: 5px 12px; border-radius: 4px; font-size: 0.85rem; }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); border-top: 1px solid #2d3447; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-brand">JJ_OS</div>
+        <div class="nav-links">
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#awards">Awards</a>
+        </div>
+    </nav>
+
+    <header>
+        <p style="color: var(--accent); margin-bottom: 10px;">$ ./init_portfolio --user="Jadon Jones"</p>
+        <h1 class="hero-title">Jadon Jones</h1>
+        <p class="hero-subtitle">Computer Science @ Michigan State University</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/jadon-jones" target="_blank">LinkedIn</a>
+            <a href="https://github.com/[Your-New-Username]" target="_blank">GitHub</a>
+            <a href="mailto:jajones0707@gmail.com">Email</a>
+        </div>
+    </header>
+
+    <section id="education" class="reveal">
+        <h2>Education</h2>
+        <div class="card" style="margin-bottom: 20px;">
+            <h3>Michigan State University</h3>
+            <p style="color: var(--text-dim);">B.S. in Computer Science | GPA: 4.0</p>
+            <p class="date">Aug 2024 – May 2027</p>
+            <p style="font-size: 0.9rem;">Relevant Coursework: CSE 325 (Computer Systems), CSE 335 (Object-Oriented Design), STT 351 (Probability and Statistics). </p>
+        </div>
+        <div class="card">
+            <h3>Kalamazoo Area Math and Science Center</h3>
+            <p style="color: var(--text-dim);">Advanced STEM Education Curriculum</p>
+            <p class="date">Aug 2020 – May 2024</p>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <h2>Experience</h2>
+        <div class="card">
+            <h3>Undergraduate Research Assistant</h3>
+            <p style="color: var(--text-dim);">Michigan State University | Oct 2024 – Present</p>
+            <ul>
+                <li>Developed AI models (CNNs) to analyze leaf water retention with computer vision.</li>
+                <li>Trained ML algorithms to process real-time environmental data for irrigation optimization.</li>
+                <li>Managed predictive data integration using SQL databases.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <h2>Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>PikinAI</h3>
+                <div class="date">May 2025 – Present</div>
+                <p>Full-stack educational platform solo-founded with Python and Flask. Uses Gemini API for child-safe AI interaction.</p>
+                <a href="https://pikinai.com" target="_blank" class="link-icon">>> pikinai.com</a>
+                <div style="margin-top: 15px;">
+                    <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Gemini API</span><span class="tag">SQL</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Soccer Simulator</h3>
+                <div class="date">Dec 2023 – Present</div>
+                <p>Arduino-based reactive target system using hardware sensors to trigger real-time LED visual feedback.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tag">C++</span><span class="tag">Arduino</span><span class="tag">IoT</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>OS Interleaving Scheduler</h3>
+                <div class="date">Feb 2026</div>
+                <p>Productivity tool based on Round Robin scheduling principles (CSE 325) to manage context-switching.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tag">Vanilla JS</span><span class="tag">OS Theory</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="reveal">
+        <h2>Awards_&_Leadership</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>1st Place - EMU Programming</h3>
+                <p>2023 High School Computer Programming Competition at Eastern Michigan University. </p>
+            </div>
+            <div class="card">
+                <h3>ACSL Champion</h3>
+                <p>2x 1st Place Teams, American Computer Science League. </p>
+            </div>
+            <div class="card">
+                <h3>NSBE Member</h3>
+                <p>National Society of Black Engineers. </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <h2>Technical_Skills</h2>
+        <div class="skills-container">
+            <div class="skill-group">
+                <h4>Languages</h4>
+                <div class="skill-list">
+                    <span class="skill-item">Python</span><span class="skill-item">C++</span>
+                    <span class="skill-item">Java</span><span class="skill-item">Spanish (B2)</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h4>AI & Data</h4>
+                <div class="skill-list">
+                    <span class="skill-item">TensorFlow</span><span class="skill-item">PyTorch</span>
+                    <span class="skill-item">OpenCV</span><span class="skill-item">CNNs</span>
+                    <span class="skill-item">Pandas/NumPy</span> 
+                </div>
+            </div>
+            <div class="skill-group">
+                <h4>Tools</h4>
+                <div class="skill-list">
+                    <span class="skill-item">Git</span><span class="skill-item">Linux</span>
+                    <span class="skill-item">SQL</span><span class="skill-item">MATLAB</span>
+                    <span class="skill-item">Arduino</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Jadon Jones | 269.366.8169 | East Lansing, MI</p>
+        <p style="margin-top: 10px; color: var(--accent);">$ logout _</p>
+    </footer>
+
+    <script>
+        const reveal = () => {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        };
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
