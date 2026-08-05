@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>*~*~ Jadon's Page ~*~*</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #626262;
+            background-image:
+                linear-gradient(45deg, #6d6d6d 25%, transparent 25%),
+                linear-gradient(-45deg, #6d6d6d 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #6d6d6d 75%),
+                linear-gradient(-45deg, transparent 75%, #6d6d6d 75%);
+            background-size: 24px 24px;
+            background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: #222;
+            min-height: 100vh;
+            padding: 30px 16px;
+            display: flex;
+            justify-content: center;
+        }
+        a { color: #7a3b3f; }
+        a:visited { color: #5c4f45; }
+
+        .page {
+            width: 100%;
+            max-width: 560px;
+            background: #cde4bc;
+            border: 4px double #626262;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
+        }
+        .titlebar {
+            background: repeating-linear-gradient(90deg, #e26a73, #e26a73 10px, #b3a190 10px, #b3a190 20px);
+            padding: 8px;
+            text-align: center;
+        }
+        .titlebar span {
+            background: #fff8ee; padding: 3px 14px; font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem; color: #7a3b3f; display: inline-block; border: 2px solid #626262;
+        }
+
+        .inner { padding: 24px 24px 20px; }
+
+        .avatar-frame {
+            width: 110px; height: 110px; margin: 0 auto 16px; border: 4px solid #b3a190;
+            background: #fff8ee;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            box-shadow: 3px 3px 0 #626262;
+        }
+        .avatar-frame img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+        h1 {
+            text-align: center; font-family: 'Press Start 2P', monospace; font-size: 1.05rem;
+            color: #7a3b3f; margin-bottom: 8px; letter-spacing: 0.02em;
+        }
+        .tagline { text-align: center; font-size: 1.3rem; color: #4a4a4a; margin-bottom: 20px; }
+        .blink { animation: blinker 1.1s step-start infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        hr.dots { border: none; border-top: 3px dotted #b3a190; margin: 16px 0; }
+
+        .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .link {
+            display: flex; align-items: center; gap: 14px;
+            background: #fff8ee;
+            border: 3px solid #b3a190;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #222;
+            font-size: 1.25rem;
+            box-shadow: 3px 3px 0 #626262;
+        }
+        .link:active { box-shadow: 1px 1px 0 #626262; transform: translate(2px, 2px); }
+        .link .emoji {
+            font-size: 1.5rem; width: 42px; height: 42px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: #cde4bc; border: 2px solid #626262;
+        }
+        .link strong { display: block; font-family: 'Press Start 2P', monospace; font-size: 0.7rem; margin-bottom: 4px; color: #7a3b3f; }
+        .link small { color: #555; font-size: 1.05rem; }
+
+        .note {
+            background: #fff8ee; border: 3px solid #b3a190; padding: 16px 18px; box-shadow: 3px 3px 0 #626262;
+        }
+        .note-title {
+            font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #7a3b3f;
+            margin-bottom: 12px; text-align: center;
+        }
+        .note p { font-size: 1.15rem; margin-bottom: 10px; line-height: 1.5; }
+        .note p:last-child { margin-bottom: 0; }
+        .note .jp { font-family: 'Noto Sans JP', 'VT323', sans-serif; font-size: 1.15rem; }
+        .note .lang-tag {
+            display: inline-block; background: #e26a73; color: #fff8ee; font-size: 0.7rem;
+            font-family: 'Press Start 2P', monospace; padding: 2px 6px; margin-right: 6px; vertical-align: middle;
+        }
+
+        .blinkies {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 3px dotted #b3a190;
+        }
+        .blinkies img { image-rendering: pixelated; border: 1px solid #626262; background: #000; }
+
+        .back-link { text-align: center; margin-top: 18px; font-size: 1.15rem; }
+
+        footer { text-align: center; margin-top: 20px; font-size: 1rem; color: #eee; }
+        .badge-row { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        .badge {
+            background: #fff8ee; border: 2px solid #626262; color: #7a3b3f; font-size: 0.9rem; padding: 3px 8px;
+        }
+
+        @media (max-width: 420px) {
+            body { padding: 18px 10px; font-size: 1.1rem; }
+            .inner { padding: 18px 16px 16px; }
+            h1 { font-size: 1rem; }
+            .avatar-frame { width: 90px; height: 90px; }
+            .link { padding: 10px 12px; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="titlebar"><span>*~ sakamotosan's page ~*</span></div>
+        <div class="inner">
+            <div class="avatar-frame"><img src="assets/avatar.gif" alt="a cat wrestling a tissue box"></div>
+            <h1>*~ WELCOME ~*</h1>
+            <p class="tagline">guitar &middot; competitive programming &middot; whatever else<span class="blink">_</span></p>
+
+            <hr class="dots">
+
+            <div class="note">
+                <p class="note-title">~ A NOTE ON LANGUAGES ~</p>
+                <p><span class="lang-tag">EN</span>English is my native language. Do not correct my english please. I think I know what I'm doing.</p>
+                <p><span class="lang-tag">ES</span>Español no es mi lengua materna, pero estoy aprendiendo. Si digo algo mal, avísame xfa. No tengo malas intenciones.</p>
+                <p class="jp"><span class="lang-tag">日本</span>僕の日本語わるいだ。ごめん。N5勉強中。</p>
+                <p class="jp"><span class="lang-tag">中文</span>我的中文不好。 抱歉。忘了。 </p>
+            </div>
+            <br>
+            <div class="links">
+                <a class="link" href="https://www.ultimate-guitar.com/u/sakamotosan" target="_blank">
+                    <span class="emoji">🎸</span>
+                    <span><strong>ULTIMATE GUITAR</strong><small>tabs & chords I've posted</small></span>
+                </a>
+                <a class="link" href="https://bandcamp.com/profile?id=3296308445" target="_blank">
+                    <span class="emoji">📼</span>
+                    <span><strong>BANDCAMP</strong><small>guitar with chopped amen breaks</small></span>
+                </a>
+                <a class="link" href="https://clist.by/coder/sakamotosan" target="_blank">
+                    <span class="emoji">🕹️</span>
+                    <span><strong>CLIST</strong><small>competitive programming profile</small></span>
+                </a>
+                <a class="link" href="https://moxfield.com/users/sakamotosan" target="_blank">
+                    <span class="emoji">🃏</span>
+                    <span><strong>MOXFIELD</strong><small>Magic: The Gathering decks</small></span>
+                </a>
+                <a class="link" href="https://github.com/JadonKJones" target="_blank">
+                    <span class="emoji">🐙</span>
+                    <span><strong>GITHUB</strong><small>code & projects</small></span>
+                </a>
+                <a class="link" href="https://www.goodreads.com/user/show/202695478-j" target="_blank">
+                    <span class="emoji">📚</span>
+                    <span><strong>GOODREADS</strong><small>what I'm reading</small></span>
+                </a>
+            </div>
+
+            <div class="blinkies">
+                <img src="assets/e93.gif" alt="">
+                <img src="assets/f63.gif" alt="">
+                <img src="assets/q14.gif" alt="">
+                <img src="assets/522730blmk1smow4.gif" alt="">
+                <img src="assets/dablinkie.gif" alt="">
+                <img src="assets/deletetiktok.gif" alt="">
+                <img src="assets/ublock.gif" alt="">
+            </div>
+            <div class="blinkies">
+
+                <img src="assets/b20.gif" alt="">
+                <img src="assets/d102.gif" alt="">
+                <img src="assets/e3.png" alt="">
+                <img src="assets/k6.gif" alt="">
+            </div>
+            <p class="back-link"><a href="index.html">&lt;&lt; back to home</a></p>
+        </div>
+    </div>
+</body>
+</html>

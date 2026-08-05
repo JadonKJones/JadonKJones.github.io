@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadon Jones | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #008080;
+            font-family: 'VT323', monospace;
+            font-size: 1.15rem;
+            color: #000;
+            padding: 20px;
+        }
+        a { color: #0000EE; }
+        a:visited { color: #551A8B; }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #c0c0c0;
+            border: 2px solid #fff;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            box-shadow: 4px 4px 0 #000;
+        }
+        .titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: #fff;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            padding: 7px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .titlebar .btns span {
+            display: inline-block; width: 16px; height: 14px;
+            background: #c0c0c0; border: 1px solid #000;
+            box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
+            text-align: center; line-height: 14px; margin-left: 3px; color: #000; font-size: 0.65rem;
+        }
+        .menubar {
+            background: #c0c0c0; border-bottom: 1px solid #808080;
+            padding: 5px 10px; font-size: 1rem; display: flex; gap: 18px;
+        }
+        .menubar a { color: #000; text-decoration: none; }
+        .menubar a:hover { text-decoration: underline; }
+
+        .content { background: #fff; margin: 10px; border: 2px solid; border-color: #808080 #fff #fff #808080; padding: 20px 26px; }
+
+        hr.rainbow {
+            border: none; height: 4px; margin: 20px 0;
+            background: repeating-linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red 200px);
+        }
+
+        header.hero { text-align: center; padding: 10px 0 20px; }
+        .under-construction {
+            display: inline-block; background: #ffff00; color: #000; border: 2px dashed #000;
+            padding: 4px 12px; font-size: 1rem; margin-bottom: 14px; transform: rotate(-1deg);
+        }
+        h1 { font-family: 'Press Start 2P', monospace; font-size: 1.5rem; color: #000080; margin-bottom: 10px; line-height: 1.6; }
+        .hero p.tag {
+            font-size: 1.35rem; color: #000; max-width: 560px; margin: 0 auto 16px;
+            background: #fff8ee; border: 1px solid #808080; padding: 10px 16px; line-height: 1.5;
+        }
+        .social-links a {
+            display: inline-block; background: #c0c0c0; border: 2px solid #fff; border-right-color: #404040; border-bottom-color: #404040;
+            padding: 6px 14px; margin: 0 4px; text-decoration: none; color: #000; font-size: 1.1rem;
+        }
+        .social-links a:active { border: 2px solid #404040; border-right-color: #fff; border-bottom-color: #fff; }
+
+        h2 {
+            font-family: 'Press Start 2P', monospace; font-size: 1rem; color: #fff;
+            background: linear-gradient(90deg, #000080, #1084d0);
+            padding: 8px 12px; margin: 30px 0 18px; display: flex; align-items: center; gap: 10px;
+        }
+        h2::before { content: "📁"; }
+
+        table.info { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+        table.info td { border: 1px solid #808080; padding: 8px 10px; vertical-align: top; font-size: 1.15rem; }
+        table.info td.label { background: #dcdcdc; width: 160px; font-weight: bold; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .card {
+            background: #eee; border: 2px solid; border-color: #fff #808080 #808080 #fff;
+            padding: 14px 16px;
+        }
+        .card h3 { font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: #000080; margin-bottom: 8px; line-height: 1.5; }
+        .card .subline { color: #333; font-weight: bold; font-size: 1.1rem; }
+        .card .date { font-size: 1rem; color: #555; margin-bottom: 8px; font-style: italic; }
+        .card p { font-size: 1.1rem; }
+        .card .link-icon { display: inline-block; margin-top: 10px; font-size: 1.05rem; }
+        ul.bullets { margin: 10px 0 0 22px; font-size: 1.1rem; }
+        ul.bullets li { margin-bottom: 6px; }
+
+        .tag {
+            display: inline-block; font-size: 0.85rem; background: #000080; color: #fff;
+            padding: 2px 8px; margin: 4px 4px 0 0; border-radius: 0;
+        }
+
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+        .skill-group h4 { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #000080; margin-bottom: 10px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-item {
+            background: #c0c0c0; border: 1px solid #fff; border-right-color: #404040; border-bottom-color: #404040;
+            padding: 4px 10px; font-size: 1.05rem;
+        }
+        .status-badge { background: #000080; color: #0f0; font-size: 0.75rem; padding: 1px 6px; margin-left: 4px; }
+
+        marquee, .blink { color: #cc0000; }
+
+        footer.page-footer {
+            text-align: center; padding: 24px; font-size: 1.1rem; color: #333;
+            border-top: 2px solid #808080; margin-top: 10px;
+        }
+        .webring { font-size: 1rem; margin-top: 10px; }
+
+        @media (max-width: 640px) {
+            body { padding: 10px; font-size: 1.05rem; }
+            .content { padding: 14px 16px; margin: 8px; }
+            .menubar { flex-wrap: wrap; gap: 10px 16px; }
+            h1 { font-size: 1.1rem; }
+            table.info td.label { width: 110px; }
+            .titlebar span:first-child { max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        }
+        @media (max-width: 420px) {
+            table.info, table.info tbody, table.info tr, table.info td { display: block; width: 100%; }
+            table.info td.label { width: auto; }
+            table.info tr { margin-bottom: 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="titlebar">
+            <span>C:\RESUME\JADON.HTML</span>
+            <span class="btns"><span>_</span><span>□</span><span>X</span></span>
+        </div>
+        <div class="menubar">
+            <a href="index.html">🏠 Home</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#awards">Awards</a>
+            <a href="#skills">Skills</a>
+        </div>
+
+        <div class="content">
+            <header class="hero">
+                <div class="under-construction">🚧 CAREER UNDER CONSTRUCTION 🚧</div>
+                <h1>JADON JONES</h1>
+                <p class="tag">Computer Science Senior @ Michigan State University — building full-stack educational platforms with Python, Flask, React, and SQL.</p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/jadon-jones" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/JadonKJones" target="_blank">GitHub</a>
+                    <a href="mailto:jones824@msu.edu">E-Mail Me</a>
+                </div>
+            </header>
+
+            <hr class="rainbow">
+
+            <section id="education">
+                <h2>Education</h2>
+                <table class="info" style="margin-bottom: 14px;">
+                    <tr><td class="label">School</td><td>Michigan State University</td></tr>
+                    <tr><td class="label">Degree</td><td>B.S. Computer Science, Concentration in Cybersecurity — Major GPA 4.0</td></tr>
+                    <tr><td class="label">Dates</td><td>Aug 2024 – May 2027 (Dean's List)</td></tr>
+                    <tr><td class="label">Coursework</td><td>CSE 331 (Data Structures &amp; Algorithms), CSE 325 (Computer Systems), CSE 335 (Object-Oriented Design), CSE 320 (Computer Organization &amp; Architecture), STT 351 (Probability and Statistics)</td></tr>
+                </table>
+                <table class="info">
+                    <tr><td class="label">School</td><td>Kalamazoo Area Math and Science Center</td></tr>
+                    <tr><td class="label">Program</td><td>Advanced STEM Education Curriculum</td></tr>
+                    <tr><td class="label">Dates</td><td>Aug 2020 – May 2024</td></tr>
+                </table>
+            </section>
+
+            <section id="experience">
+                <h2>Experience</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>FULL-STACK SOFTWARE<br>ENGINEERING INTERN</h3>
+                        <p class="subline">PikinAI Educational Platform</p>
+                        <p class="date">May 2025 – Sep 2025</p>
+                        <ul class="bullets">
+                            <li>Designed and launched a full-stack educational platform using Python, Flask, HTML/CSS, and responsive design, applying UI/UX principles to improve classroom usability.</li>
+                            <li>Built a MySQL database schema and deployed the app on Linux servers, achieving 99.9% platform availability.</li>
+                            <li>Co-developed a child-safe AI chatbot integrating the Gemini API with content-moderation filters.</li>
+                            <li>Contributed to agile processes — code reviews, stand-ups, and sprint planning — supporting international and multilingual users.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>UNDERGRADUATE<br>RESEARCH ASSISTANT</h3>
+                        <p class="subline">MSU College of Engineering (Dr. Zhichao Cao)</p>
+                        <p class="date">Aug 2024 – May 2026</p>
+                        <ul class="bullets">
+                            <li>Designed and deployed a CNN model in PyTorch and TensorFlow on Linux to analyze leaf water retention for precision-irrigation decisions.</li>
+                            <li>Optimized CNN architectures for real-time environmental data processing, reducing inference latency.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>UNDERGRADUATE<br>LEARNING ASSISTANT</h3>
+                        <p class="subline">MSU College of Engineering (Dr. Iliya Miralavy)</p>
+                        <p class="date">Jun 2026 – Present</p>
+                        <ul class="bullets">
+                            <li>Facilitated lab sessions and office hours for 100+ students on systems programming.</li>
+                            <li>Graded C assignments with feedback on memory management and systems design.</li>
+                            <li>Developed supplementary resources on process scheduling and virtual memory.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>ANI2ANKI</h3>
+                        <p class="date">Feb 2026 – Present</p>
+                        <p>Automated tool for Japanese learners that extracts subtitle dialogue and timestamps from anime to generate comprehensive Anki flashcards.</p>
+                        <a href="/AnimeExtractor" class="link-icon">&gt;&gt; View Project</a>
+                        <div style="margin-top: 8px;"><span class="tag">Python</span><span class="tag">React</span><span class="tag">NLP</span></div>
+                    </div>
+                    <div class="card">
+                        <h3>PIKINAI</h3>
+                        <p class="date">May 2025 – Present</p>
+                        <p>Full-stack educational platform solo-founded with Python and Flask. Uses the Gemini API for child-safe AI interaction.</p>
+                        <a href="https://pikinai.com" target="_blank" class="link-icon">&gt;&gt; View Project</a>
+                        <div style="margin-top: 8px;"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Gemini API</span><span class="tag">MySQL</span></div>
+                    </div>
+                    <div class="card">
+                        <h3>SPARTANOID</h3>
+                        <p class="date">Feb 2026 – Mar 2026</p>
+                        <p>Cross-platform brick-breaker-style game built with a student Agile team using C++ and wxWidgets, with custom physics and collision detection.</p>
+                        <div style="margin-top: 8px;"><span class="tag">C++</span><span class="tag">wxWidgets</span><span class="tag">Game Dev</span></div>
+                    </div>
+                    <div class="card">
+                        <h3>SOCCER TARGET<br>SIMULATOR</h3>
+                        <p class="date">Dec 2023 – Present</p>
+                        <p>Arduino-based reactive target system using vibration sensors to trigger real-time LED visual feedback, with sub-100ms latency.</p>
+                        <div style="margin-top: 8px;"><span class="tag">C</span><span class="tag">Arduino</span><span class="tag">IoT</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="awards">
+                <h2>Awards &amp; Involvement</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🏆 1ST PLACE —<br>EMU PROGRAMMING</h3>
+                        <p>2023 High School Computer Programming Competition at Eastern Michigan University.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🏆 ACSL CHAMPION</h3>
+                        <p>2x 1st Place Teams, American Computer Science League.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎗️ NSBE MEMBER</h3>
+                        <p>National Society of Black Engineers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-group">
+                        <h4>LANGUAGES /<br>FRAMEWORKS</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">Python</span><span class="skill-item">C++</span>
+                            <span class="skill-item">C</span><span class="skill-item">Java</span>
+                            <span class="skill-item">JavaScript</span><span class="skill-item">HTML/CSS</span>
+                            <span class="skill-item">React</span><span class="skill-item">Flask</span>
+                            <span class="skill-item">Jinja2</span><span class="skill-item">SQL</span>
+                            <span class="skill-item">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>AI &amp; MACHINE<br>LEARNING</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">TensorFlow</span><span class="skill-item">PyTorch</span>
+                            <span class="skill-item">OpenCV</span><span class="skill-item">CNNs</span>
+                            <span class="skill-item">Deep Learning</span><span class="skill-item">Machine Learning</span>
+                            <span class="skill-item">Computer Vision</span><span class="skill-item">Data Analysis</span>
+                            <span class="skill-item">Natural Language Processing</span><span class="skill-item">Pandas/NumPy</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>TOOLS &amp;<br>METHODOLOGIES</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">Git</span><span class="skill-item">Linux</span>
+                            <span class="skill-item">Windows</span><span class="skill-item">MATLAB</span>
+                            <span class="skill-item">Arduino</span><span class="skill-item">Agile / Scrum</span>
+                            <span class="skill-item">Trello</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>CERTIFICATIONS</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">Responsive Web Design (freeCodeCamp)</span>
+                            <span class="skill-item">Scientific Computing (freeCodeCamp)</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h4>LANGUAGES</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">English <span class="status-badge">Native</span></span>
+                            <span class="skill-item">Spanish <span class="status-badge">B2</span></span>
+                            <span class="skill-item">Mandarin <span class="status-badge">HSK 1</span></span>
+                            <span class="skill-item">Japanese <span class="status-badge">N5</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="page-footer">
+            <p>Jadon Jones &middot; <a href="mailto:jones824@msu.edu">jones824@msu.edu</a></p>
+            <p class="webring">[ <a href="index.html">Home</a> ]</p>
+        </footer>
+    </div>
+</body>
+</html>
