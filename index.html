@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadon Jones - Home</title>
+    <script>
+        (function () {
+            if (window.location.search.indexOf('stay') !== -1) return;
+            var ref = (document.referrer || '').toLowerCase();
+            if (!ref) return;
+            var professional = ['linkedin.com', 'github.com'];
+            var personal = ['discord.com', 'discordapp.com', 'youtube.com', 'youtu.be'];
+            function matches(hosts) { return hosts.some(function (h) { return ref.indexOf(h) !== -1; }); }
+            if (matches(professional)) window.location.replace('professional.html');
+            else if (matches(personal)) window.location.replace('personal.html');
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
