@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Hall</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #008080;
+            font-family: 'VT323', monospace;
+            font-size: 1.15rem;
+            color: #000;
+            padding: 20px;
+        }
+        a { color: #0000EE; }
+        a:visited { color: #551A8B; }
+
+        .page {
+            max-width: 950px;
+            margin: 0 auto;
+            background: #c0c0c0;
+            border: 2px solid #fff;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            box-shadow: 4px 4px 0 #000;
+        }
+        .titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: #fff;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            padding: 7px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .titlebar .btns span {
+            display: inline-block; width: 16px; height: 14px;
+            background: #c0c0c0; border: 1px solid #000;
+            box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
+            text-align: center; line-height: 14px; margin-left: 3px; color: #000; font-size: 0.65rem;
+        }
+        .menubar {
+            background: #c0c0c0; border-bottom: 1px solid #808080;
+            padding: 5px 10px; font-size: 1rem;
+        }
+        .menubar a { color: #000; text-decoration: none; }
+        .menubar a:hover { text-decoration: underline; }
+
+        .content {
+            background: #fff;
+            margin: 10px; border: 2px solid; border-color: #808080 #fff #fff #808080;
+            padding: 26px 24px 34px;
+        }
+
+        hr.rainbow {
+            border: none; height: 4px; margin: 20px 0;
+            background: repeating-linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red 200px);
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', monospace; font-size: 1.4rem; color: #000080;
+            text-align: center; margin-bottom: 8px; line-height: 1.6;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 36px 28px;
+            padding: 20px 10px 10px;
+        }
+        .cert {
+            position: relative;
+            background: #fff;
+            padding: 8px 8px 12px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .cert:nth-child(6n+1) { transform: rotate(-3deg); }
+        .cert:nth-child(6n+2) { transform: rotate(2.5deg); }
+        .cert:nth-child(6n+3) { transform: rotate(-1.5deg); }
+        .cert:nth-child(6n+4) { transform: rotate(3deg); }
+        .cert:nth-child(6n+5) { transform: rotate(-2deg); }
+        .cert:nth-child(6n+6) { transform: rotate(1.5deg); }
+        .cert:hover { transform: scale(1.05) rotate(0deg); box-shadow: 0 14px 28px rgba(0,0,0,0.45); z-index: 5; }
+
+        /* fridge magnet */
+        .magnet {
+            position: absolute; top: -16px; left: 50%; transform: translateX(-50%) rotate(-6deg);
+            width: 34px; height: 22px; border-radius: 6px;
+            background: linear-gradient(160deg, #ff5f6d, #c0392b 70%);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5), inset 0 2px 3px rgba(255,255,255,0.55), inset 0 -3px 4px rgba(0,0,0,0.25);
+            z-index: 2;
+        }
+        .magnet::after {
+            content: "";
+            position: absolute; top: 3px; left: 4px; width: 10px; height: 5px; border-radius: 50%;
+            background: rgba(255,255,255,0.7); filter: blur(1px);
+        }
+        .cert:nth-child(3n+2) .magnet {
+            background: linear-gradient(160deg, #6fc3ff, #2e6fbf 70%);
+            transform: translateX(-50%) rotate(5deg);
+        }
+        .cert:nth-child(3n+3) .magnet {
+            background: linear-gradient(160deg, #c9f28c, #4c9a2a 70%);
+            transform: translateX(-50%) rotate(-4deg);
+        }
+        .cert:nth-child(2n) .magnet {
+            width: 22px; height: 22px; border-radius: 50%;
+        }
+
+        .cert img {
+            width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+            border: 1px solid #999; cursor: zoom-in;
+        }
+        .cert p {
+            text-align: center; font-size: 0.95rem; margin-top: 8px; color: #333;
+        }
+
+        footer.page-footer {
+            text-align: center; padding: 24px; font-size: 1.1rem; color: #333;
+            border-top: 2px solid #808080; margin-top: 10px;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.85);
+            align-items: center; justify-content: center;
+            padding: 30px; cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox-inner {
+            max-width: 900px; width: 100%;
+            background: #c0c0c0;
+            border: 2px solid #fff; border-right-color: #000; border-bottom-color: #000;
+            box-shadow: 4px 4px 0 #000;
+            cursor: default;
+        }
+        .lightbox-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: #fff; font-family: 'Press Start 2P', monospace; font-size: 0.7rem;
+            padding: 7px 10px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .lightbox-titlebar button {
+            font-family: monospace; font-size: 0.8rem; width: 20px; height: 18px;
+            background: #c0c0c0; border: 1px solid #000;
+            box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
+            cursor: pointer;
+        }
+        .lightbox img { width: 100%; display: block; padding: 10px; box-sizing: border-box; }
+
+        @media (max-width: 640px) {
+            body { padding: 10px; font-size: 1.05rem; }
+            .content { padding: 16px 14px 24px; margin: 8px; }
+            h1 { font-size: 1.05rem; }
+            .gallery { gap: 32px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="titlebar">
+            <span>C:\CERTIFICATES\HALL.HTML</span>
+            <span class="btns"><span>_</span><span>□</span><span>X</span></span>
+        </div>
+        <div class="menubar">
+            <a id="backLink" href="index.html">&lt;&lt; Back</a>
+        </div>
+
+        <div class="content">
+            <h1>🏆 CERTIFICATE HALL 🏆</h1>
+            <hr class="rainbow">
+
+            <div class="gallery">
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/actfl-chinese-2023.png" alt="ACTFL AAPPL Certificate for Chinese, awarded to Jadon Jones, May 16 2023" data-full="assets/actfl-chinese-2023.png" data-caption="ACTFL AAPPL — Chinese Proficiency Certificate">
+                    <p>ACTFL AAPPL — Chinese Proficiency</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/scriptctf-2026.png" alt="Certificate of Participation, scriptCTF 2026, awarded to sakamotosan, finished 385/1249" data-full="assets/scriptctf-2026.png" data-caption="scriptCTF 2026 — Certificate of Participation">
+                    <p>scriptCTF 2026 — Certificate of Participation</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/ordination-2026.jpeg" alt="Credentials of Ministry, Universal Life Church Ministries, awarded to Jadon Jones, July 8 2026" data-full="assets/ordination-2026.jpeg" data-caption="Universal Life Church — Credentials of Ministry">
+                    <p>Universal Life Church — Ordained Minister</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/thryvectf-2026.png" alt="Participation Certificate, ThryveCTF 2026 Qualifications, awarded to Jadon Jones, August 14 2026" data-full="assets/thryvectf-2026.png" data-caption="ThryveCTF 2026 — Participation Certificate">
+                    <p>ThryveCTF 2026 — Participation Certificate</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/rat-tickling-2026.png" alt="Certificate of Completion, Rat Tickling Certification Course, awarded to Jadon Jones by Purdue University" data-full="assets/rat-tickling-2026.png" data-caption="Purdue University — Rat Tickling Certification Course">
+                    <p>Purdue University — Rat Tickling Certification</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/fcc-scientific-computing-2023.png" alt="freeCodeCamp Developer Certification, Scientific Computing with Python, awarded to Jadon Jones, September 1 2023" data-full="assets/fcc-scientific-computing-2023.png" data-caption="freeCodeCamp — Scientific Computing with Python">
+                    <p>freeCodeCamp — Scientific Computing with Python</p>
+                </div>
+                <div class="cert">
+                    <span class="magnet"></span>
+                    <img src="assets/emu-programming-2023.png" alt="The 2023 High School Computer Programming Competition, First Place Python Advanced Level, Eastern Michigan University, awarded to Jadon Jones, David Li, David Shen" data-full="assets/emu-programming-2023.png" data-caption="EMU — 1st Place, Python Advanced Level">
+                    <p>EMU — 1st Place, Python Advanced Level</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <p><a href="index.html">Home</a></p>
+        </footer>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-inner">
+            <div class="lightbox-titlebar">
+                <span id="lightboxCaption">CERTIFICATE.PNG</span>
+                <button id="lightboxClose">X</button>
+            </div>
+            <img id="lightboxImg" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var from = params.get('from');
+            var link = document.getElementById('backLink');
+            if (from === 'professional' || from === 'personal') {
+                link.href = from + '.html';
+            }
+
+            var gallery = document.querySelector('.gallery');
+            var certs = Array.prototype.slice.call(gallery.querySelectorAll('.cert'));
+            certs.sort(function (a, b) {
+                var captionA = a.querySelector('p').textContent.trim().toLowerCase();
+                var captionB = b.querySelector('p').textContent.trim().toLowerCase();
+                return captionA.localeCompare(captionB);
+            });
+            certs.forEach(function (cert) { gallery.appendChild(cert); });
+
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightboxImg');
+            var lightboxCaption = document.getElementById('lightboxCaption');
+
+            function openLightbox(img) {
+                lightboxImg.src = img.getAttribute('data-full') || img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.textContent = img.getAttribute('data-caption') || img.alt;
+                lightbox.classList.add('open');
+            }
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightboxImg.src = '';
+            }
+
+            document.querySelectorAll('.cert img').forEach(function (img) {
+                img.addEventListener('click', function () { openLightbox(img); });
+            });
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        })();
+    </script>
+</body>
+</html>
